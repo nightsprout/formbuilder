@@ -1,0 +1,164 @@
+  <section class="ns-section-main">
+    <div class="ns-section-wrapper">
+
+      <style>
+        ol#ns-form-builder {
+          display: inline-block;
+          width: 100%;
+        }
+        ol#ns-form-builder > li.ns-form-builder-question {
+          display: inline-block;
+          width: 100%;
+        }
+        ol#ns-form-builder > li.ns-form-builder-question .ns-form-builder-question-section {
+          display: inline-block;
+          width: 100%;
+          margin: 0 0 20px 0;
+        }
+        ol#ns-form-builder > li.ns-form-builder-question .ns-form-builder-question-section > label {
+          display: inline-block;
+          margin: 0 10px 0 0;
+        }
+        ol#ns-form-builder > li.ns-form-builder-question .ns-form-builder-question-section > input[type="text"] {
+          display: inline-block;
+          width: 600px;
+        }
+        ol#ns-form-builder > li.ns-form-builder-question .ns-form-builder-question-section > input[type="checkbox"] {
+          display: inline-block;
+          margin: 0 5px 0 0;
+        }
+        ol#ns-form-builder > li.ns-form-builder-question .ns-form-builder-question-title {
+          display: inline-block;
+          width: 100%;
+          font-weight: bold;
+        }
+        ol#ns-form-builder > li.ns-form-builder-question .ns-form-builder-question-responses {
+          display: inline-block;
+          width: 100%;
+          margin: 0 0 20px 0;
+        }
+        ol#ns-form-builder > li.ns-form-builder-question .ns-form-builder-question-responses > label {
+          display: inline-block;
+          width: 120px;
+          padding: 0 20px 0 0;
+        }
+        ol#ns-form-builder > li.ns-form-builder-question .ns-form-builder-question-responses > input[type="text"] {
+          display: inline-block;
+          width: 554px;
+        }
+      </style>
+
+      <h1>Form Builder</h1>
+
+      <ol id="ns-form-builder">
+        <li
+          class="ns-form-builder-question"
+          ng-repeat="question in form track by $index"
+          >
+
+          <div ng-if="question.type === 'multipleChoice'">
+
+            <label class="ns-form-builder-question-title">Question {{$index + 1}} (Multiple Choice Question):</label>
+
+            <div class="ns-form-builder-question-section">
+              <label>If this is a 'scale question', you can click this button to seed it with 'scale question' defaults:</label>
+              <button ng-click="formMethods.seedQuestionWithScaleDefaults($index);">Seed As Scale Question</button>
+            </div>            
+
+            <div class="ns-form-builder-question-section">
+              <label>Question Text:</label>
+              <input ng-model="question.questionText" type="text" />
+            </div>
+
+            <div class="ns-form-builder-question-section">
+              <input ng-model="question.repeater" ng-attr-id="{{'ns-form-builder-question-section-repeater-' + $index}}" type="checkbox" />
+              <label ng-attr-for="{{'ns-form-builder-question-section-repeater-' + $index}}">Check this if the question is a repeater.</label>
+            </div>
+
+            <label>Question Responses:</label>
+            <div
+              class="ns-form-builder-question-responses"
+              ng-repeat="response in question.responses track by $index"
+              >
+              <label>Response {{$index + 1}} Text:</label>
+              <input ng-model="response.responseText" type="text" />
+              <button ng-click="formMethods.addResponse($parent.$index, 'multipleChoice');">Add</button>
+              <button ng-if="$index > 0" ng-click="formMethods.removeResponse($parent.$parent.$index, $index);">Remove</button>
+            </div>
+
+            <button ng-click="formMethods.removeQuestion($index);">Remove This Question</button>
+
+            <hr />
+
+          </div>
+
+          <div ng-if="question.type === 'openResponse'">
+
+            <label class="ns-form-builder-question-title">Question {{$index + 1}} (Open Response Question):</label>
+
+            <div class="ns-form-builder-question-section">
+              <label>Question Text:</label>
+              <input ng-model="question.questionText" type="text" />
+            </div>
+
+            <div class="ns-form-builder-question-section">
+              <input ng-model="question.repeater" ng-attr-id="{{'ns-form-builder-question-section-repeater-' + $index}}" type="checkbox" />
+              <label ng-attr-for="{{'ns-form-builder-question-section-repeater-' + $index}}">Check this if the question is a repeater.</label>
+            </div>
+
+            <button ng-click="formMethods.removeQuestion($index);">Remove This Question</button>
+
+            <hr />
+
+          </div>
+
+          <div ng-if="question.type === 'checkboxField'">
+
+            <label class="ns-form-builder-question-title">Question {{$index + 1}} (Checkbox Field Question):</label>
+
+            <div class="ns-form-builder-question-section">
+              <label>Question Text:</label>
+              <input ng-model="question.questionText" type="text" />
+            </div>
+
+            <div class="ns-form-builder-question-section">
+              <input ng-model="question.repeater" ng-attr-id="{{'ns-form-builder-question-section-repeater-' + $index}}" type="checkbox" />
+              <label ng-attr-for="{{'ns-form-builder-question-section-repeater-' + $index}}">Check this if the question is a repeater.</label>
+            </div>
+
+            <label>Question Responses:</label>
+            <div
+              class="ns-form-builder-question-responses"
+              ng-repeat="response in question.responses track by $index"
+              >
+              <label>Response {{$index + 1}} Text:</label>
+              <input ng-model="response.responseText" type="text" />
+              <button ng-click="formMethods.addResponse($parent.$index, 'checkboxField');">Add</button>
+              <button ng-if="$index > 0" ng-click="formMethods.removeResponse($parent.$parent.$index, $index);">Remove</button>
+            </div>
+
+            <button ng-click="formMethods.removeQuestion($index);">Remove This Question</button>
+
+            <hr />
+
+          </div>
+
+        </li>
+      </ol>
+
+      <button ng-click="formMethods.addQuestion('multipleChoice');">Add Multiple Choice Question</button>
+      <button ng-click="formMethods.addQuestion('openResponse');">Add Open Response Question</button>
+      <button ng-click="formMethods.addQuestion('checkboxField');">Add Checkbox Question</button>
+
+      <!-- EVERYTHING BELOW THIS IS JUST FOR DEVELOPER DEBUGGING. -->
+
+      <hr style="margin: 100px 0 0 0;" />
+      <h3>Developer Toolbox</h3>
+      <button ng-click="formMethods.seedJSON();">SEED JSON</button>
+      <button ng-click="formMethods.publishJSON();">PUBLISH JSON</button>
+
+    </div>
+    <!-- .ns-section-wrapper -->
+  </section>
+  <!-- section.ns-section-main -->
+
