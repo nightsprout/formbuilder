@@ -46,9 +46,35 @@
           display: inline-block;
           width: 554px;
         }
+
+        ol#ns-form-builder-read-only {
+          display: inline-block;
+          width: 100%;
+        }
+        ol#ns-form-builder-read-only > li.ns-form-builder-read-only-question {
+          display: inline-block;
+          width: 100%;
+        }
+        ol#ns-form-builder-read-only > li.ns-form-builder-read-only-question .ns-form-builder-read-only-question-section {
+          display: inline-block;
+          width: 100%;
+        }
+        ol#ns-form-builder-read-only > li.ns-form-builder-read-only-question .ns-form-builder-read-only-question-title {
+          display: inline-block;
+          width: 100%;
+          font-weight: bold;
+        }
+        ol#ns-form-builder-read-only > li.ns-form-builder-read-only-question .ns-form-builder-read-only-question-responses {
+          display: inline-block;
+          width: 100%;
+        }
+        ol#ns-form-builder-read-only > li.ns-form-builder-read-only-question .ns-form-builder-read-only-question-responses strong {
+          display: inline-block;
+          margin: 0 10px 0 0;
+        }
       </style>
 
-      <h1>Form Builder</h1>
+      <h3 style="font-size: 32px; font-weight: 900; margin: 40px 0 40px 0;">Form Builder:</h3>
 
       <ol id="ns-form-builder">
         <li
@@ -63,7 +89,7 @@
             <div class="ns-form-builder-question-section">
               <label>If this is a 'scale question', you can click this button to seed it with 'scale question' defaults:</label>
               <button ng-click="formMethods.seedQuestionWithScaleDefaults($index);">Seed As Scale Question</button>
-            </div>            
+            </div>
 
             <div class="ns-form-builder-question-section">
               <label>Question Text:</label>
@@ -150,12 +176,95 @@
       <button ng-click="formMethods.addQuestion('openResponse');">Add Open Response Question</button>
       <button ng-click="formMethods.addQuestion('checkboxField');">Add Checkbox Question</button>
 
-      <!-- EVERYTHING BELOW THIS IS JUST FOR DEVELOPER DEBUGGING. -->
+      <!-- BELOW TO NEXT HTML COMMENT IS JUST FOR DEVELOPER DEBUGGING. -->
 
       <hr style="margin: 100px 0 0 0;" />
       <h3>Developer Toolbox</h3>
       <button ng-click="formMethods.seedJSON();">SEED JSON</button>
       <button ng-click="formMethods.publishJSON();">PUBLISH JSON</button>
+
+      <!-- ABOVE TO NEXT HTML COMMENT IS JUST FOR DEVELOPER DEBUGGING. -->
+
+      <hr style="margin: 100px 0 0 0;" />
+
+      <h3 style="font-size: 32px; font-weight: 900; margin: 40px 0 40px 0;">Here is an example fully-built form in read-only format:</h3>
+
+      <ol id="ns-form-builder-read-only">
+        <li
+          class="ns-form-builder-read-only-question"
+          ng-repeat="question in builtForm track by $index"
+          >
+
+          <div ng-if="question.type === 'multipleChoice'">
+
+            <label class="ns-form-builder-read-only-question-title">Question {{$index + 1}} (Multiple Choice Question):</label>
+
+            <div class="ns-form-builder-read-only-question-section">
+              {{question.questionText}}
+            </div>
+
+            <div
+              class="ns-form-builder-read-only-question-responses"
+              ng-repeat="response in question.responses track by $index"
+              >
+              <strong>{{"Response " + ($index + 1) + ": "}}</strong>{{response.responseText}}
+            </div>
+
+            <hr />
+
+          </div>
+
+          <div ng-if="question.type === 'openResponse'">
+
+            <label class="ns-form-builder-read-only-question-title">Question {{$index + 1}} (Open Response Question):</label>
+
+            <div class="ns-form-builder-read-only-question-section">
+              {{question.questionText}}
+            </div>
+
+            <hr />
+
+          </div>
+
+          <div ng-if="question.type === 'checkboxField'">
+
+            <label class="ns-form-builder-read-only-question-title">Question {{$index + 1}} (Checkbox Field Question):</label>
+
+            <div class="ns-form-builder-read-only-question-section">
+              {{question.questionText}}
+            </div>
+
+            <div
+              class="ns-form-builder-read-only-question-responses"
+              ng-repeat="response in question.responses track by $index"
+              >
+              <strong>{{"Response " + ($index + 1) + ": "}}</strong>{{response.responseText}}
+            </div>
+
+            <hr />
+
+          </div>
+
+        </li>
+      </ol>
+
+
+      <!-- BELOW TO NEXT HTML COMMENT IS JUST FOR DEVELOPER DEBUGGING. -->
+
+      <hr style="margin: 100px 0 0 0;" />
+      <h3>Developer Toolbox</h3>
+      <button ng-click="formMethods.setBuiltFormToWorkingTemplate();">SET TO TEMPLATE IN-PROGRESS</button>
+
+      <!-- ABOVE TO NEXT HTML COMMENT IS JUST FOR DEVELOPER DEBUGGING. -->
+
+
+
+
+
+
+
+
+
 
     </div>
     <!-- .ns-section-wrapper -->

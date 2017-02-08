@@ -20,6 +20,9 @@ AngularApp.controller("baseController", ["$rootScope", "$scope", "httpService", 
     removeResponse: function(indexOfQuestion, indexOfResponse) {
       $scope.form[indexOfQuestion].responses.splice(indexOfResponse, 1);
     },
+    setBuiltFormToWorkingTemplate: function() {
+      $scope.builtForm = $scope.form;
+    },
     seedQuestionWithScaleDefaults: function(indexOfQuestion) {
       console.log("test");
       $scope.form[indexOfQuestion].questionText = "How true is the following statement on a scale from 1 to 5? <INSERT STATEMENT HERE.>";
@@ -101,6 +104,106 @@ AngularApp.controller("baseController", ["$rootScope", "$scope", "httpService", 
       }
     }
   };
+
+  $scope.builtForm = [
+    {
+      "type":"multipleChoice",
+      "orderValue":1,
+      "repeater":null,
+      "questionText":"How many hours a week do you use the computer?",
+      "responseTemplates":{
+         "responseText":null,
+         "responseBoolean":null
+      },
+      "responses":[
+         {
+            "responseText":"Under 1 hour.",
+            "responseBoolean":null
+         },
+         {
+            "responseText":"1-5 hours.",
+            "responseBoolean":null
+         },
+         {
+            "responseText":"6-24 hours.",
+            "responseBoolean":null
+         },
+         {
+            "responseText":"25-40 hours.",
+            "responseBoolean":null
+         },
+         {
+            "responseText":"41+ hours.",
+            "responseBoolean":null
+         }
+      ]
+    },
+    {
+      "type":"openResponse",
+      "orderValue":2,
+      "repeater":true,
+      "questionText":"What is your name?",
+      "answerText":null
+    },
+    {
+      "type":"checkboxField",
+      "orderValue":3,
+      "repeater":false,
+      "questionText":"What are your hobbies?",
+      "responseTemplates":{
+         "responseText":null,
+         "responseBoolean":null
+      },
+      "responses":[
+         {
+            "responseText":"Sports.",
+            "responseBoolean":null
+         },
+         {
+            "responseText":"Video games.",
+            "responseBoolean":null
+         },
+         {
+            "responseText":"Arts & crafts.",
+            "responseBoolean":null
+         }
+      ]
+    },
+    {
+      "type":"multipleChoice",
+      "orderValue":4,
+      "repeater":null,
+      "questionText":"How true is the following statement on a scale from 1 to 5? I find my job satisfying.",
+      "responseTemplates":{
+         "responseText":null,
+         "responseBoolean":null
+      },
+      "responses":[
+         {
+            "responseText":"1",
+            "responseBoolean":null
+         },
+         {
+            "responseText":"2",
+            "responseBoolean":null
+         },
+         {
+            "responseText":"3",
+            "responseBoolean":null
+         },
+         {
+            "responseText":"4",
+            "responseBoolean":null
+         },
+         {
+            "responseText":"5",
+            "responseBoolean":null
+         }
+      ]
+    }
+    ];
+
+
 
   // // This object basically serves as the basic data model.
   // // It is set when the main page AJAX request completes successfully.
