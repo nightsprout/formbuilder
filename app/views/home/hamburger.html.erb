@@ -1,0 +1,103 @@
+<!-- if you want to work with that markup then youll have to go into the theme, remove the markup's CSS, and then paste me the HTML that the php prints to the screen -->
+
+
+<style>
+  #ns-hamburger-plugin {
+    left: 500px;
+  }
+</style>
+
+
+
+<style>
+  #ns-hamburger-plugin {
+    display: block;
+    width: 39px;
+    height: 39px;
+    padding: 5px 8px 0 8px;
+    color: #ffffff;
+    background: #000000;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+    border-radius: 3px;
+  }
+  #ns-hamburger-plugin:hover {
+    opacity: .75;
+  }
+  #ns-hamburger-plugin > span.ns-hamburger-plugin-stripe {
+    display: block;
+    height: 3px;
+    width: 23px;
+    margin: 0 0 5px 0;
+    background: #ffffff;
+    border-radius: 3px;
+  }
+  #ns-hamburger-plugin > ol#ns-hamburger-plugin-dropdown {
+    display: block;
+    width: 200px;
+    height: 0;
+    border-radius: 3px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 39px;
+    transition-property: height;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in;
+    transition-delay: 0;
+  }
+  #ns-hamburger-plugin:hover > ol#ns-hamburger-plugin-dropdown {
+    height: 300px;
+  }
+  #ns-hamburger-plugin > ol#ns-hamburger-plugin-dropdown > li.ns-hamburger-plugin-dropdown-item {
+    display: block;
+    width: 180px;
+    padding: 10px;
+    background: #000000;
+  }
+  #ns-hamburger-plugin > ol#ns-hamburger-plugin-dropdown > li.ns-hamburger-plugin-dropdown-item:nth-child(1) {
+    border-radius: 3px 3px 0 0;
+  }
+  #ns-hamburger-plugin > ol#ns-hamburger-plugin-dropdown > li.ns-hamburger-plugin-dropdown-item:last-child {
+    border-radius: 0 0 3px 3px;
+  }
+  #ns-hamburger-plugin > ol#ns-hamburger-plugin-dropdown > li.ns-hamburger-plugin-dropdown-item:hover {
+    background: red;
+  }
+</style>
+
+
+<button id="ns-hamburger-plugin">
+  <span class="ns-hamburger-plugin-stripe"></span>
+  <span class="ns-hamburger-plugin-stripe"></span>
+  <span class="ns-hamburger-plugin-stripe"></span>
+  <ol id="ns-hamburger-plugin-dropdown">
+    <li class="ns-hamburger-plugin-dropdown-item">
+      Menu Item 1
+    </li>
+    <!-- li.ns-hamburger-plugin-dropdown-item -->
+    <li class="ns-hamburger-plugin-dropdown-item">
+      Menu Item 2
+    </li>
+    <!-- li.ns-hamburger-plugin-dropdown-item -->
+    <li class="ns-hamburger-plugin-dropdown-item">
+      Menu Item 3
+    </li>
+    <!-- li.ns-hamburger-plugin-dropdown-item -->
+    <li class="ns-hamburger-plugin-dropdown-item">
+      Menu Item 4
+    </li>
+    <!-- li.ns-hamburger-plugin-dropdown-item -->
+    <li class="ns-hamburger-plugin-dropdown-item">
+      Menu Item 5
+    </li>
+    <!-- li.ns-hamburger-plugin-dropdown-item -->
+  </ol>
+  <!-- #ns-hamburger-plugin-dropdown -->
+</button>
+<!-- #ns-hamburger-plugin -->
+
+
+
+

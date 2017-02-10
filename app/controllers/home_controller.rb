@@ -28,4 +28,9 @@ class HomeController < ApplicationController
     @angularController = 'baseController'
   end
 
+
+  def hamburger
+    @angularController = 'baseController'
+  end
+
 end
